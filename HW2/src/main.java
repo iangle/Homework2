@@ -86,4 +86,13 @@ public class main {
     }
 
 
+    private ArrayList<String> getSimilarValues(String currGeneID, ArrayList<String> GeneIDs, ArrayList<String> Localization, int kValue)
+    {
+        String[] similarValues = new String[kValue];
+
+
+
+    }
+
+
 }
