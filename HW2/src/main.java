@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class main {
@@ -86,13 +87,54 @@ public class main {
     }
 
 
-    private ArrayList<String> getSimilarValues(String currGeneID, ArrayList<String> GeneIDs, ArrayList<String> Localization, int kValue)
+    private ArrayList<String> getSimilarValues(String currGeneID, ArrayList<String> geneIDs, ArrayList<String> Localizations, int kValue)
     {
-        String[] similarValues = new String[kValue];
+        //a list of the similar localization values
+        ArrayList<String> similarValues = new ArrayList<>();
 
+        //gets rid of the g in front of the gene and transforms it to an integer
+        char[] geneChar = currGeneID.toCharArray();
+        char[] geneCharID = Arrays.copyOfRange(geneChar,1,6);
+        currGeneID = String.valueOf(geneCharID);
+        int testGene = Integer.parseInt(currGeneID);
 
+        //the previous gene in the array
+        int prevGene = testGene;
 
+        //go through every gene and check for the closest ones to our test gene
+        for(int i = 0; i < geneIDs.size(); i++)
+        {
+            //gets rid of the g in front of the gene and transforms it to an integer
+            char[] tempArray = geneIDs.get(i).toCharArray();
+            char[] tempChar = Arrays.copyOfRange(tempArray,1,6);
+            String currID = String.valueOf(tempChar);
+            int currGene = Integer.parseInt(currID);
+
+            if(testGene > prevGene && testGene < currGene)
+            {
+                int diffPrev = Math.abs(testGene - prevGene);
+                int diffCurr = Math.abs(testGene - currGene);
+
+                for(int j = 1; j <= kValue; j++)
+                {
+
+                    if(diffPrev < diffCurr)
+                    {
+                        similarValues.add(String.valueOf(geneIDs.get(i-j)));
+                    }else if(diffCurr < diffPrev)
+                    {
+                        similarValues.add(String.valueOf(geneIDs.get(i+j)));
+                    }
+                }
+            }
+
+            prevGene = currGene;
+        }
+
+        return similarValues;
     }
+
+
 
 
 }

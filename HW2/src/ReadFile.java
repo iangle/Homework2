@@ -1,9 +1,3 @@
-/** @Name Isaac Angle
- * @Description this class reads in a file from the given location and then
- * updates the hashmap with that data with the columns being the data and the key being
- * the name of each column.
- */
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -144,5 +138,24 @@ public class ReadFile {
      * @return an arraylist that contains the names of the columns
      */
     public ArrayList<String> getColumnNames(){ assert (!columnNames.isEmpty()); return columnNames; }
+
+
+    /**
+     *
+     * @return a hash map using the geneID as the key and the localization value as it object
+     */
+    public HashMap<String,String> getGeneIdMap ()
+    {
+        assert (!incomingData.isEmpty());
+
+        HashMap<String,String> geneMap = new HashMap<>();
+
+        for(int i = 0; i < incomingData.get("GeneID").size(); i++)
+        {
+            geneMap.put(incomingData.get("GeneID").get(i),incomingData.get("Localization").get(i));
+        }
+
+        return geneMap;
+    }
 
 }
