@@ -77,7 +77,7 @@ public class ReadFile {
         ArrayList<String> phenotypes = new ArrayList<>();
         ArrayList<String> motifs = new ArrayList<>();
         ArrayList<String> chromosomes = new ArrayList<>();
-        ArrayList<String> functions = new ArrayList<>();
+        //ArrayList<String> functions = new ArrayList<>();
         ArrayList<String> localizations = new ArrayList<>();
 
         //get the first line of the file, this is the name of each column
@@ -104,7 +104,7 @@ public class ReadFile {
             phenotypes.add(parsedLine[4]);
             motifs.add(parsedLine[5]);
             chromosomes.add(parsedLine[6]);
-            functions.add(parsedLine[7]);
+            //functions.add(parsedLine[7]);
             localizations.add(parsedLine[8]);
         }
 
@@ -116,7 +116,7 @@ public class ReadFile {
         data.put(parsedFirstLine[4],phenotypes);
         data.put(parsedFirstLine[5],motifs);
         data.put(parsedFirstLine[6],chromosomes);
-        data.put(parsedFirstLine[7],functions);
+        //data.put(parsedFirstLine[7],functions);
         data.put(parsedFirstLine[8],localizations);
 
         //return the map
